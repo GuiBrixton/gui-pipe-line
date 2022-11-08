@@ -1,20 +1,27 @@
+
 pipeline {
     agent any
 
     stages {
         stage('Build') {
             steps {
-                echo 'Building....'
+                echo 'Building... test'
+                script{
+                    cowsay = load 'lib/cowsay.groovy'
+                    text = cowsay.template("mu")
+                    echo text
+                }
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing.TESTING'
+                echo 'Testing...'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
-            }    }
-}
+                echo 'Deploying.....'
+            }
+        }
+    }
 }
